@@ -9,7 +9,7 @@ namespace Unity3d.PlaneTriangulator
     {
         public const float Eps = 1e-9f;
 
-        private struct ListNode
+        private class ListNode
         {
             public ListNode(int left, int right)
             {
@@ -187,7 +187,7 @@ namespace Unity3d.PlaneTriangulator
         {
             if (convexHull.Count <= index)
             {
-                convexHull.Add(new ListNode());
+                convexHull.Add(new ListNode(-1,-1));
             }
             return convexHull[index];
         }
@@ -231,6 +231,17 @@ namespace Unity3d.PlaneTriangulator
             }
         }
 
+        private static string[] PrintGraph(Dictionary<Edge, TwoVertices> graph)
+        {
+            var result = new List<string>();
+            foreach (var twoVerticese in graph)
+            {
+                result.Add(
+                    $"{twoVerticese.Key.Vertex1},{twoVerticese.Key.Vertex2},{twoVerticese.Value.Vertex1},{twoVerticese.Value.Vertex2}");
+            }
+            return result.ToArray();
+        }
+
         private static void AddVertexToTriangulation(int vertexId, List<Vector2> vertices, List<ListNode> convexHull, Dictionary<Edge, TwoVertices> graph)
         {
             int hullVertex = vertexId - 1;
@@ -250,17 +261,47 @@ namespace Unity3d.PlaneTriangulator
             }
             GetOrAdd(convexHull, vertexId).SetRight(hullVertex);
 
+            // Аналогично для движения влево, пока ребра видимые
+            hullVertex = vertexId - 1;
+            lastVector = vertices[hullVertex] - vertices[vertexId];
+            nextHullVertex = convexHull[hullVertex].Left;
+            newVector = vertices[nextHullVertex] - vertices[vertexId];
+
+            while (CrossProduct(lastVector, newVector) < Eps)
+            {
+                FixTriangulation(nextHullVertex, hullVertex, vertexId, vertices, graph);
+
+                hullVertex = nextHullVertex;
+                lastVector = newVector;
+                nextHullVertex = convexHull[hullVertex].Left;
+                newVector = vertices[nextHullVertex] - vertices[vertexId];
+            }
+            GetOrAdd(convexHull, vertexId).SetLeft(hullVertex);
+
             GetOrAdd(convexHull, GetOrAdd(convexHull, vertexId).Right).SetLeft(vertexId);
             GetOrAdd(convexHull, hullVertex).SetRight(vertexId);
         }
 
-        public static IEnumerable<int> Build(IEnumerable<Vector2> vertices)
+        private static IEnumerable<int> ConvertToTriangulation(Dictionary<Edge, TwoVertices> graph)
+        {
+            var result = new List<int>();
+            foreach (var twoVerticese in graph)
+            {
+                if (twoVerticese.Value.Vertex2 > 0)
+                {
+                    continue;
+                }
+                result.Add(twoVerticese.Key.Vertex1);
+                result.Add(twoVerticese.Key.Vertex2);
+                result.Add(twoVerticese.Value.Vertex1);
+            }
+            return result;
+        }
+
+        public IEnumerable<int> Build(IEnumerable<Vector2> vertices)
         {
             var sortedVertices = vertices.OrderBy(v => v.x).ToList();
-            if (sortedVertices.Count == 4)
-            {
-                return new List<int>();
-            }
+
             var convexHull = new List<ListNode>(sortedVertices.Count);
             var graph = new Dictionary<Edge, TwoVertices>();
 
@@ -275,7 +316,7 @@ namespace Unity3d.PlaneTriangulator
                 AddVertexToTriangulation(i, sortedVertices, convexHull, graph);
             }
 
-            return new List<int>();
+            return ConvertToTriangulation(graph);
         }
     }
 }
