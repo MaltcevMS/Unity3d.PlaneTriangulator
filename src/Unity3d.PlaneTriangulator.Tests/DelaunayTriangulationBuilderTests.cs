@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
@@ -36,7 +35,7 @@ namespace Unity3d.PlaneTriangulator.Tests
                 new Vector2(1, 1)
             };
 
-            //Act
+            //Act & Assert
             TestPointsCount(vertices, expectedTrianglesCount);
         }
 
@@ -54,7 +53,27 @@ namespace Unity3d.PlaneTriangulator.Tests
                 new Vector2(1.7f, 1.7f)
             };
 
-            //Act
+            //Act & Assert
+            TestPointsCount(vertices, expectedTrianglesCount);
+        }
+
+        [Test]
+        public void Test_BuildOn8Vertices()
+        {
+            //Arrange
+            const int expectedTrianglesCount = 10;
+            var vertices = new[]{
+                new Vector2(-1.1f,-1.7f),
+                new Vector2(-1.1f,1.7f),
+                new Vector2(1.1f,1.7f),
+                new Vector2(1.1f,-1.7f),
+                new Vector2(0.8f,0.2f),
+                new Vector2(0.6f,0.4f),
+                new Vector2(0.8f,0.6f),
+                new Vector2(1.0f,0.4f)
+            };
+
+            //Act & Assert
             TestPointsCount(vertices, expectedTrianglesCount);
         }
     }
