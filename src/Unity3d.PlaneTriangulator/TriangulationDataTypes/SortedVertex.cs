@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Unity3d.PlaneTriangulator.TriangulationInternals
+namespace Unity3d.PlaneTriangulator.TriangulationDataTypes
 {
-    internal class SortedVertex
+    public class SortedVertex
     {
         public SortedVertex(int index, Vector2 vertex)
         {

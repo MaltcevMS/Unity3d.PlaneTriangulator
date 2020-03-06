@@ -23,6 +23,22 @@ namespace Unity3d.PlaneTriangulator.Tests
         }
 
         [Test]
+        public void Test_BuildOn3Vertices()
+        {
+            //Arrange
+            const int expectedTrianglesCount = 1;
+            var vertices = new[]
+            {
+                new Vector2(0, 0),
+                new Vector2(0, 1),
+                new Vector2(1, 0)
+            };
+
+            //Act & Assert
+            TestPointsCount(vertices, expectedTrianglesCount);
+        }
+
+        [Test]
         public void Test_BuildOn4Vertices()
         {
             //Arrange

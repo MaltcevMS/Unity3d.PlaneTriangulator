@@ -8,4 +8,8 @@
     <PackageReference Include="Unity3D.UnityEngine" Version="2018.3.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TriangulationDataStructures\" />
+  </ItemGroup>
+
 </Project>

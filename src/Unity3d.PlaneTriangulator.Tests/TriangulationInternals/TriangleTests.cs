@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Unity3d.PlaneTriangulator.TriangulationInternals;
+using Unity3d.PlaneTriangulator.TriangulationDataTypes;
 
 namespace Unity3d.PlaneTriangulator.Tests.TriangulationInternals
 {
