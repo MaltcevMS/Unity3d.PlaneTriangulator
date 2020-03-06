@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity3d.PlaneTriangulator", "..\src\Unity3d.PlaneTriangulator\Unity3d.PlaneTriangulator.csproj", "{039753BE-3256-4EB2-B18E-1BD92573758A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3d.PlaneTriangulator.Tests", "..\src\Unity3d.PlaneTriangulator.Tests\Unity3d.PlaneTriangulator.Tests.csproj", "{3027EA81-151C-4964-A5E8-DE02DE3EA2A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{039753BE-3256-4EB2-B18E-1BD92573758A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039753BE-3256-4EB2-B18E-1BD92573758A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039753BE-3256-4EB2-B18E-1BD92573758A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039753BE-3256-4EB2-B18E-1BD92573758A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3027EA81-151C-4964-A5E8-DE02DE3EA2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3027EA81-151C-4964-A5E8-DE02DE3EA2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3027EA81-151C-4964-A5E8-DE02DE3EA2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3027EA81-151C-4964-A5E8-DE02DE3EA2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99BD1AE0-C05C-4631-8F5B-91D3556C8379}
+	EndGlobalSection
+EndGlobal
